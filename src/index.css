@@ -1969,3 +1969,66 @@ body.menu-open {
     min-height: 120px;
   }
 }
+
+
+/* Compact social footer treatment */
+.social-section {
+  grid-template-columns: minmax(260px, .65fr) minmax(0, 1.35fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  padding-top: clamp(2.75rem, 4vw, 3.75rem);
+  padding-bottom: clamp(2.75rem, 4vw, 3.75rem);
+}
+
+.social-copy h2 {
+  font-size: clamp(2.35rem, 3.4vw, 3.45rem);
+}
+
+.social-copy > p:last-child {
+  max-width: 440px;
+  margin-top: .9rem;
+  font-size: .92rem;
+  line-height: 1.65;
+}
+
+.social-links a {
+  min-height: 112px;
+  gap: 1.25rem;
+  padding: 1.1rem 1.15rem;
+}
+
+.social-links svg {
+  width: 24px;
+  height: 24px;
+}
+
+.social-links span {
+  font-size: .66rem;
+}
+
+@media (max-width: 1050px) {
+  .social-section {
+    gap: 2rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .social-links a {
+    min-height: 105px;
+  }
+}
+
+@media (max-width: 760px) {
+  .social-section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .social-copy h2 {
+    font-size: clamp(2.2rem, 10vw, 3rem);
+  }
+
+  .social-links a {
+    min-height: 96px;
+    padding: 1rem;
+  }
+}
