@@ -13,13 +13,6 @@ const PinIcon = () => (
   </svg>
 )
 
-const SearchIcon = () => (
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <circle cx="11" cy="11" r="6.5" />
-    <path d="m16 16 4 4" />
-  </svg>
-)
-
 const HomeIcon = () => (
   <svg viewBox="0 0 24 24" aria-hidden="true">
     <path d="m3 11 9-7 9 7" />
@@ -40,29 +33,81 @@ const ChartIcon = () => (
   </svg>
 )
 
+const MenuIcon = () => (
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M4 7h16M4 12h16M4 17h16" />
+  </svg>
+)
+
+const CloseIcon = () => (
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="m6 6 12 12M18 6 6 18" />
+  </svg>
+)
+
 const services = [
   {
     icon: <HomeIcon />,
     number: '01',
-    title: 'Real Estate Done Right',
-    text: "Whether you're buying, selling, investing, or simply exploring the market, our team keeps the process clear, personal, and focused on your goals.",
+    title: 'Buying in Pahrump',
+    text: 'Compare homes, acreage, and different property types with guidance that keeps your priorities, budget, and next move in focus.',
   },
   {
     icon: <KeyIcon />,
     number: '02',
-    title: 'Homes for Every Chapter',
-    text: 'From fixer-uppers and first homes to luxury properties and commercial opportunities, we help you find the right fit at the right price.',
+    title: 'Selling With a Plan',
+    text: 'Get practical help with pricing, positioning, preparation, and the decisions that carry a Pahrump home from listing to closing.',
   },
   {
     icon: <ChartIcon />,
     number: '03',
-    title: 'Expert Guidance',
-    text: 'Questions about affordability, credit, financing, or next steps? We connect you with trusted professionals and keep you informed at every turn.',
+    title: 'Local Guidance',
+    text: 'Ask questions early. Marci helps you understand the area, weigh your options, and connect with trusted local resources when you need them.',
+  },
+]
+
+const pathways = [
+  {
+    number: '01',
+    title: 'Buy a Home',
+    text: 'Looking for Pahrump homes for sale, more land, or a different pace of life? Start with your priorities and build the search from there.',
+    href: '#contact',
+    cta: 'Start your home search',
+  },
+  {
+    number: '02',
+    title: 'Sell Your Home',
+    text: 'Get a clear plan for pricing, presentation, exposure, and the next steps involved in selling a home in Pahrump.',
+    href: '#sell',
+    cta: 'See the selling approach',
+  },
+  {
+    number: '03',
+    title: 'Relocating to Pahrump',
+    text: 'Learn what everyday life can look like here, from open desert surroundings and mountain views to neighborhood and recreation options.',
+    href: '#life-in-pahrump',
+    cta: 'Explore the area',
+  },
+]
+
+const marketNotes = [
+  {
+    title: 'Homes & Acreage',
+    text: 'Pahrump offers a mix of established neighborhoods, residential homes, larger lots, and properties with more open space.',
+  },
+  {
+    title: 'A Different Pace',
+    text: 'Many buyers are drawn to the area for breathing room, wide-open Nevada views, and a setting that feels less dense than a major city.',
+  },
+  {
+    title: 'Local Details Matter',
+    text: 'Property type, location, utilities, land, and neighborhood features can vary. Local knowledge helps you compare the details that matter.',
   },
 ]
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 48)
@@ -98,11 +143,19 @@ function App() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  useEffect(() => {
+    document.body.classList.toggle('menu-open', menuOpen)
+    return () => document.body.classList.remove('menu-open')
+  }, [menuOpen])
+
+  const closeMenu = () => setMenuOpen(false)
+
   return (
     <div className="site-shell">
       <a className="skip-link" href="#main-content">Skip to main content</a>
-      <header className={`topbar ${isScrolled ? 'topbar-scrolled' : ''}`}>
-        <a className="brand" href="#top" aria-label="Marci Metzger home">
+
+      <header className={`topbar ${isScrolled ? 'topbar-scrolled' : ''} ${menuOpen ? 'topbar-menu-open' : ''}`}>
+        <a className="brand" href="#top" aria-label="Marci Metzger home" onClick={closeMenu}>
           <span
             className="brand-mark brand-avatar"
             aria-hidden="true"
@@ -135,7 +188,7 @@ function App() {
         </a>
 
         <nav className="desktop-nav" aria-label="Primary navigation">
-          <a href="#homes">Homes</a>
+          <a href="#homes">Buy</a>
           <a href="#sell">Sell</a>
           <a href="#about">About</a>
           <a href="#services">Services</a>
@@ -146,11 +199,39 @@ function App() {
           <span>Let's talk</span>
           <ArrowIcon />
         </a>
+
+        <button
+          className="mobile-menu-button"
+          type="button"
+          aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-navigation"
+          onClick={() => setMenuOpen((current) => !current)}
+        >
+          {menuOpen ? <CloseIcon /> : <MenuIcon />}
+        </button>
       </header>
+
+      <div
+        className={`mobile-menu ${menuOpen ? 'is-open' : ''}`}
+        id="mobile-navigation"
+        aria-hidden={!menuOpen}
+      >
+        <nav aria-label="Mobile navigation">
+          <a href="#homes" onClick={closeMenu}><span>01</span>Buy a Home</a>
+          <a href="#sell" onClick={closeMenu}><span>02</span>Sell Your Home</a>
+          <a href="#about" onClick={closeMenu}><span>03</span>Meet Marci</a>
+          <a href="#services" onClick={closeMenu}><span>04</span>Services</a>
+          <a href="#contact" onClick={closeMenu}><span>05</span>Contact</a>
+        </nav>
+        <a className="mobile-menu-call" href="tel:+12069196886">
+          Call Marci <strong>(206) 919-6886</strong>
+        </a>
+      </div>
 
       <main id="main-content">
         <section className="hero" id="top">
-          <div className="hero-media" role="img" aria-label="Modern desert home with mountain views in Nevada" />
+          <div className="hero-media" role="img" aria-label="Pahrump community with homes, recreation, mountains, and Nevada desert scenery" />
           <div className="hero-overlay" />
 
           <div className="hero-content hero-intro">
@@ -161,15 +242,15 @@ function App() {
             </h1>
             <p className="hero-copy">
               Nearly three decades of real estate experience helping buyers and sellers
-              move with confidence in Pahrump and beyond.
+              make confident decisions in Pahrump and Southern Nevada.
             </p>
 
             <div className="hero-actions">
               <a className="button button-light" href="#homes">
-                Find a home <ArrowIcon />
+                Explore your options <ArrowIcon />
               </a>
               <a className="text-link light-link" href="#sell">
-                Selling your home? <span>Explore our approach</span>
+                Selling your home? <span>See Marci's approach</span>
               </a>
             </div>
           </div>
@@ -183,65 +264,30 @@ function App() {
           </div>
         </section>
 
-        <section className="search-section reveal-section" id="homes" data-reveal>
+        <section className="pathways-section reveal-section" id="homes" data-reveal>
           <div className="section-heading split-heading">
             <div>
-              <p className="eyebrow">Search Pahrump Real Estate</p>
-              <h2>Find a place that feels like yours.</h2>
+              <p className="eyebrow">Pahrump Real Estate</p>
+              <h2>Start with what you need next.</h2>
             </div>
             <p>
-              Start with the essentials. We’ll help you make sense of the market,
-              compare options, and find the property that fits your next chapter.
+              Buying, selling, or relocating all begin with different questions.
+              Choose the path that fits you and Marci can help you take the next step.
             </p>
           </div>
 
-          <form
-            className="property-search"
-            aria-label="Property search filters"
-            onSubmit={(event) => event.preventDefault()}
-          >
-            <label className="search-field">
-              <span>Location</span>
-              <select defaultValue="Pahrump, NV">
-                <option>Pahrump, NV</option>
-                <option>Las Vegas, NV</option>
-                <option>Southern Nevada</option>
-              </select>
-            </label>
-            <label className="search-field">
-              <span>Property type</span>
-              <select defaultValue="Any property">
-                <option>Any property</option>
-                <option>Residential</option>
-                <option>Commercial</option>
-                <option>Land</option>
-              </select>
-            </label>
-            <label className="search-field">
-              <span>Bedrooms</span>
-              <select defaultValue="Any">
-                <option>Any</option>
-                <option>1+</option>
-                <option>2+</option>
-                <option>3+</option>
-                <option>4+</option>
-              </select>
-            </label>
-            <label className="search-field">
-              <span>Price range</span>
-              <select defaultValue="Any price">
-                <option>Any price</option>
-                <option>Under $300k</option>
-                <option>$300k – $500k</option>
-                <option>$500k – $750k</option>
-                <option>$750k+</option>
-              </select>
-            </label>
-            <button className="search-button" type="submit">
-              <SearchIcon />
-              Search homes
-            </button>
-          </form>
+          <div className="pathways-grid">
+            {pathways.map((pathway) => (
+              <article className="pathway-card motion-card" key={pathway.number}>
+                <div className="pathway-number">{pathway.number}</div>
+                <h3>{pathway.title}</h3>
+                <p>{pathway.text}</p>
+                <a href={pathway.href}>
+                  {pathway.cta} <ArrowIcon />
+                </a>
+              </article>
+            ))}
+          </div>
 
           <div className="listing-preview reveal-section" data-reveal>
             <article className="listing-card listing-card-large motion-card">
@@ -250,10 +296,10 @@ function App() {
               </div>
               <div className="listing-copy">
                 <div>
-                  <p>Desert homes & acreage</p>
-                  <h3>Space, mountain views, and room to breathe.</h3>
+                  <p>Homes, land & acreage</p>
+                  <h3>Space, mountain views, and room to make a place your own.</h3>
                 </div>
-                <a href="#contact" aria-label="Ask Marci about Pahrump homes">
+                <a href="#contact" aria-label="Ask Marci about Pahrump homes and acreage">
                   <ArrowIcon />
                 </a>
               </div>
@@ -265,10 +311,10 @@ function App() {
               </div>
               <div className="listing-copy">
                 <div>
-                  <p>Residential properties</p>
-                  <h3>Homes for every stage of life.</h3>
+                  <p>Residential real estate</p>
+                  <h3>Find a home that fits the way you want to live.</h3>
                 </div>
-                <a href="#contact" aria-label="Ask Marci about residential properties">
+                <a href="#contact" aria-label="Ask Marci about Pahrump residential real estate">
                   <ArrowIcon />
                 </a>
               </div>
@@ -278,7 +324,7 @@ function App() {
 
         <section className="seller-section reveal-section" id="sell" data-reveal>
           <div className="seller-visual">
-            <div className="seller-image" />
+            <div className="seller-image" role="img" aria-label="Pahrump home with backyard pool and mountain views" />
             <div className="experience-card">
               <strong>Nearly 3</strong>
               <span>decades in real estate</span>
@@ -286,17 +332,17 @@ function App() {
           </div>
 
           <div className="seller-content">
-            <p className="eyebrow">For Sellers</p>
-            <h2>Don’t just list it. Get it sold.</h2>
+            <p className="eyebrow">Selling a Home in Pahrump</p>
+            <h2>Don't just list it. Sell with a plan.</h2>
             <p className="lead">
-              Selling a home deserves more than putting a sign in the yard. Marci and
-              The Ridge Realty Group work every avenue to put your property in front of
-              serious buyers and position it for the strongest possible outcome.
+              A successful sale starts before the property goes live. Marci helps you
+              think through pricing, preparation, positioning, and how your home should
+              be presented to serious buyers.
             </p>
 
             <div className="seller-points">
               <div><span>01</span><p>Market-aware pricing and positioning</p></div>
-              <div><span>02</span><p>Focused exposure across the buyer journey</p></div>
+              <div><span>02</span><p>Practical preparation before going to market</p></div>
               <div><span>03</span><p>Clear guidance from listing through closing</p></div>
             </div>
 
@@ -306,25 +352,26 @@ function App() {
           </div>
         </section>
 
-        <section className="proof-strip reveal-section" aria-label="Sales highlights" data-reveal>
+        <section className="proof-strip reveal-section" aria-label="Marci Metzger sales highlights" data-reveal>
           <div><strong>90</strong><span>Nearly 90 clients helped in 2021</span></div>
           <div><strong>$28.5M</strong><span>Closed sales volume in 2021</span></div>
-          <div><strong>Local</strong><span>We live, work, and play in this community</span></div>
+          <div><strong>Local</strong><span>Pahrump-based real estate guidance</span></div>
         </section>
 
         <section className="about-section reveal-section" id="about" data-reveal>
           <div className="about-copy">
-            <p className="eyebrow">Meet Marci</p>
-            <h2>A real estate pro who knows the market — and the community.</h2>
+            <p className="eyebrow">Meet Marci Metzger</p>
+            <h2>Experience matters. Local context matters too.</h2>
             <p>
-              Nobody knows the market like someone who is part of it. Marci brings
-              nearly three decades of experience, hands-on market knowledge, and a
-              practical network of local resources to every client relationship.
+              Marci brings nearly three decades of real estate experience together with
+              firsthand knowledge of Pahrump and Southern Nevada. Her job is not simply
+              to show properties or put a home on the market. It is to help clients
+              understand their options and make informed decisions.
             </p>
             <p>
-              From market analysis and upgrade recommendations to contractors and
-              trusted financing connections, the goal is simple: make sure you feel
-              confident and informed at every step.
+              Whether you're comparing neighborhoods, looking for more land, preparing
+              to sell, or figuring out what comes next, Marci keeps the process practical,
+              personal, and easy to understand.
             </p>
             <a className="text-link dark-link" href="#contact">
               Work with Marci <ArrowIcon />
@@ -332,18 +379,18 @@ function App() {
           </div>
 
           <div className="about-images">
-            <div className="about-image portrait-image" role="img" aria-label="Marci Metzger" />
-            <div className="about-image detail-image" role="img" aria-label="Nevada desert landscape" />
+            <div className="about-image portrait-image" role="img" aria-label="Marci Metzger, Pahrump real estate professional" />
+            <div className="about-image detail-image" role="img" aria-label="Pahrump golf-course neighborhood with mountain views" />
           </div>
         </section>
 
         <section className="services-section reveal-section" id="services" data-reveal>
           <div className="section-heading centered-heading">
-            <p className="eyebrow">How We Help</p>
-            <h2>Real estate, done right.</h2>
+            <p className="eyebrow">How Marci Helps</p>
+            <h2>Clear guidance for your next move.</h2>
             <p>
-              Residential, commercial, investment, or simply figuring out what comes next —
-              start with experienced guidance.
+              Real estate decisions come with a lot of moving parts. The goal is to make
+              those decisions easier to understand, not more complicated.
             </p>
           </div>
 
@@ -361,6 +408,27 @@ function App() {
           </div>
         </section>
 
+        <section className="market-section reveal-section" aria-labelledby="market-heading" data-reveal>
+          <div className="market-heading">
+            <p className="eyebrow">Pahrump Real Estate at a Glance</p>
+            <h2 id="market-heading">Useful context before you start looking.</h2>
+            <p>
+              Pahrump real estate can look very different from one property to the next.
+              A little local context helps you know what questions to ask.
+            </p>
+          </div>
+
+          <div className="market-grid">
+            {marketNotes.map((note, index) => (
+              <article className="market-note" key={note.title}>
+                <span>0{index + 1}</span>
+                <h3>{note.title}</h3>
+                <p>{note.text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
         <section className="lifestyle-section reveal-section" aria-labelledby="life-in-pahrump" data-reveal>
           <div className="lifestyle-heading">
             <div>
@@ -368,8 +436,8 @@ function App() {
               <h2 id="life-in-pahrump">A closer look at the community.</h2>
             </div>
             <p>
-              Golf-course neighborhoods, recreation, mountain views, and homes built around
-              a little more breathing room — explore the setting Marci knows firsthand.
+              Pahrump combines open Nevada scenery with neighborhoods, recreation,
+              mountain views, and homes built around a little more breathing room.
             </p>
           </div>
 
@@ -394,10 +462,10 @@ function App() {
             <p className="eyebrow light">Why Pahrump</p>
             <h2>More room to live. More Nevada to love.</h2>
             <p>
-              Open desert landscapes, mountain backdrops, generous lot sizes, and a
-              close-knit community make Pahrump a distinctive place to call home.
-              Whether you're relocating, investing, or already local, having someone
-              who understands the area makes all the difference.
+              People explore Pahrump for different reasons: more space, mountain views,
+              a quieter setting, or simply a change of pace. The right property depends
+              on what matters most to you, and local guidance can make those differences
+              easier to compare.
             </p>
             <a className="button button-light" href="#contact">
               Explore Pahrump with Marci <ArrowIcon />
@@ -416,7 +484,10 @@ function App() {
           <div className="contact-heading">
             <p className="eyebrow">Let's Make a Move</p>
             <h2>Ready when you are.</h2>
-            <p>Buying, selling, or just have a question? Reach out and start the conversation.</p>
+            <p>
+              Buying, selling, relocating, or just trying to understand your options?
+              Reach out and start with a conversation.
+            </p>
           </div>
 
           <div className="contact-grid">
@@ -447,10 +518,11 @@ function App() {
               </div>
               <label>
                 <span>I'm interested in...</span>
-                <select defaultValue="">
+                <select name="interest" defaultValue="">
                   <option value="" disabled>Select an option</option>
                   <option>Buying a home</option>
                   <option>Selling a home</option>
+                  <option>Relocating to Pahrump</option>
                   <option>Investment property</option>
                   <option>Commercial real estate</option>
                   <option>General question</option>
@@ -458,11 +530,12 @@ function App() {
               </label>
               <label>
                 <span>Message</span>
-                <textarea rows="5" placeholder="Tell Marci a little about what you're looking for." />
+                <textarea name="message" rows="5" placeholder="Tell Marci a little about what you're looking for." />
               </label>
               <button className="button button-dark submit-button" type="submit">
                 Send message <ArrowIcon />
               </button>
+              <p className="form-note">No pressure. Just tell Marci what you need help with.</p>
             </form>
           </div>
         </section>
@@ -480,7 +553,7 @@ function App() {
         </a>
         <p>© 2026 Marci Metzger. All rights reserved.</p>
         <div className="footer-links">
-          <a href="#homes">Homes</a><a href="#sell">Sell</a><a href="#contact">Contact</a>
+          <a href="#homes">Buy</a><a href="#sell">Sell</a><a href="#contact">Contact</a>
         </div>
       </footer>
     </div>
