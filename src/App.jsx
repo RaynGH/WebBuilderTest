@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+
 const ArrowIcon = () => (
   <svg viewBox="0 0 20 20" aria-hidden="true">
     <path d="M4 10h11M11 5l5 5-5 5" />
@@ -60,9 +62,45 @@ const services = [
 ]
 
 function App() {
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 48)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const revealItems = document.querySelectorAll('[data-reveal]')
+
+    if (reducedMotion) {
+      revealItems.forEach((item) => item.classList.add('is-visible'))
+    } else {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible')
+              observer.unobserve(entry.target)
+            }
+          })
+        },
+        { threshold: 0.14, rootMargin: '0px 0px -8% 0px' },
+      )
+
+      revealItems.forEach((item) => observer.observe(item))
+
+      return () => {
+        window.removeEventListener('scroll', onScroll)
+        observer.disconnect()
+      }
+    }
+
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   return (
     <div className="site-shell">
-      <header className="topbar">
+      <header className={`topbar ${isScrolled ? 'topbar-scrolled' : ''}`}>
         <a className="brand" href="#top" aria-label="Marci Metzger home">
           <span
             className="brand-mark brand-avatar"
@@ -114,7 +152,7 @@ function App() {
           <div className="hero-media" role="img" aria-label="Modern desert home with mountain views in Nevada" />
           <div className="hero-overlay" />
 
-          <div className="hero-content">
+          <div className="hero-content hero-intro">
             <p className="eyebrow light">Pahrump, Nevada Real Estate</p>
             <h1>
               Local expertise.
@@ -144,7 +182,7 @@ function App() {
           </div>
         </section>
 
-        <section className="search-section" id="homes">
+        <section className="search-section reveal-section" id="homes" data-reveal>
           <div className="section-heading split-heading">
             <div>
               <p className="eyebrow">Search Pahrump Real Estate</p>
@@ -200,8 +238,8 @@ function App() {
             </button>
           </form>
 
-          <div className="listing-preview">
-            <article className="listing-card listing-card-large">
+          <div className="listing-preview reveal-section" data-reveal>
+            <article className="listing-card listing-card-large motion-card">
               <div className="listing-image image-one">
                 <span className="listing-tag">Explore Pahrump</span>
               </div>
@@ -216,7 +254,7 @@ function App() {
               </div>
             </article>
 
-            <article className="listing-card">
+            <article className="listing-card motion-card">
               <div className="listing-image image-two">
                 <span className="listing-tag">Local living</span>
               </div>
@@ -233,7 +271,7 @@ function App() {
           </div>
         </section>
 
-        <section className="seller-section" id="sell">
+        <section className="seller-section reveal-section" id="sell" data-reveal>
           <div className="seller-visual">
             <div className="seller-image" />
             <div className="experience-card">
@@ -263,13 +301,13 @@ function App() {
           </div>
         </section>
 
-        <section className="proof-strip" aria-label="Sales highlights">
+        <section className="proof-strip reveal-section" aria-label="Sales highlights" data-reveal>
           <div><strong>90</strong><span>Nearly 90 clients helped in 2021</span></div>
           <div><strong>$28.5M</strong><span>Closed sales volume in 2021</span></div>
           <div><strong>Local</strong><span>We live, work, and play in this community</span></div>
         </section>
 
-        <section className="about-section" id="about">
+        <section className="about-section reveal-section" id="about" data-reveal>
           <div className="about-copy">
             <p className="eyebrow">Meet Marci</p>
             <h2>A real estate pro who knows the market — and the community.</h2>
@@ -294,7 +332,7 @@ function App() {
           </div>
         </section>
 
-        <section className="services-section" id="services">
+        <section className="services-section reveal-section" id="services" data-reveal>
           <div className="section-heading centered-heading">
             <p className="eyebrow">How We Help</p>
             <h2>Real estate, done right.</h2>
@@ -306,7 +344,7 @@ function App() {
 
           <div className="services-grid">
             {services.map((service) => (
-              <article className="service-card" key={service.number}>
+              <article className="service-card motion-card" key={service.number}>
                 <div className="service-top">
                   <span className="service-icon">{service.icon}</span>
                   <span className="service-number">{service.number}</span>
@@ -318,7 +356,7 @@ function App() {
           </div>
         </section>
 
-        <section className="lifestyle-section" aria-labelledby="life-in-pahrump">
+        <section className="lifestyle-section reveal-section" aria-labelledby="life-in-pahrump" data-reveal>
           <div className="lifestyle-heading">
             <div>
               <p className="eyebrow">Life in Pahrump</p>
@@ -346,7 +384,7 @@ function App() {
           </div>
         </section>
 
-        <section className="pahrump-section">
+        <section className="pahrump-section reveal-section" data-reveal>
           <div className="pahrump-content">
             <p className="eyebrow light">Why Pahrump</p>
             <h2>More room to live. More Nevada to love.</h2>
@@ -369,7 +407,7 @@ function App() {
           </div>
         </section>
 
-        <section className="contact-section" id="contact">
+        <section className="contact-section reveal-section" id="contact" data-reveal>
           <div className="contact-heading">
             <p className="eyebrow">Let's Make a Move</p>
             <h2>Ready when you are.</h2>
