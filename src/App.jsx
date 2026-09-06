@@ -64,8 +64,30 @@ function App() {
     <div className="site-shell">
       <header className="topbar">
         <a className="brand" href="#top" aria-label="Marci Metzger home">
-          <span className="brand-mark brand-avatar" aria-hidden="true">
-            <img src="/images/marci-metzger.webp" alt="" />
+          <span
+            className="brand-mark brand-avatar"
+            aria-hidden="true"
+            style={{
+              width: '50px',
+              height: '50px',
+              minWidth: '50px',
+              minHeight: '50px',
+              overflow: 'hidden',
+              borderRadius: '50%',
+              display: 'block',
+            }}
+          >
+            <img
+              src="/images/marci-metzger.webp"
+              alt=""
+              style={{
+                width: '100%',
+                height: '100%',
+                display: 'block',
+                objectFit: 'cover',
+                objectPosition: 'center 18%',
+              }}
+            />
           </span>
           <span className="brand-copy">
             <strong>Marci Metzger</strong>
