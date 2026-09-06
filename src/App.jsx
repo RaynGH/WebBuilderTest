@@ -100,6 +100,7 @@ function App() {
 
   return (
     <div className="site-shell">
+      <a className="skip-link" href="#main-content">Skip to main content</a>
       <header className={`topbar ${isScrolled ? 'topbar-scrolled' : ''}`}>
         <a className="brand" href="#top" aria-label="Marci Metzger home">
           <span
@@ -147,8 +148,8 @@ function App() {
         </a>
       </header>
 
-      <main id="top">
-        <section className="hero">
+      <main id="main-content">
+        <section className="hero" id="top">
           <div className="hero-media" role="img" aria-label="Modern desert home with mountain views in Nevada" />
           <div className="hero-overlay" />
 
@@ -194,7 +195,11 @@ function App() {
             </p>
           </div>
 
-          <form className="property-search" onSubmit={(event) => event.preventDefault()}>
+          <form
+            className="property-search"
+            aria-label="Property search filters"
+            onSubmit={(event) => event.preventDefault()}
+          >
             <label className="search-field">
               <span>Location</span>
               <select defaultValue="Pahrump, NV">
@@ -370,15 +375,15 @@ function App() {
 
           <div className="lifestyle-grid">
             <figure className="lifestyle-card lifestyle-card-wide">
-              <img src="/images/pahrump-golf-neighborhood.webp" alt="Pahrump neighborhood overlooking a golf course and mountains" />
+              <img src="/images/pahrump-golf-neighborhood.webp" alt="Pahrump neighborhood overlooking a golf course and mountains" loading="lazy" decoding="async" />
               <figcaption>Neighborhood living</figcaption>
             </figure>
             <figure className="lifestyle-card">
-              <img src="/images/pahrump-courts.webp" alt="Community recreation courts in Pahrump with mountain views" />
+              <img src="/images/pahrump-courts.webp" alt="Community recreation courts in Pahrump with mountain views" loading="lazy" decoding="async" />
               <figcaption>Community amenities</figcaption>
             </figure>
             <figure className="lifestyle-card">
-              <img src="/images/pahrump-home-interior.webp" alt="Bright Pahrump home interior with large windows" />
+              <img src="/images/pahrump-home-interior.webp" alt="Bright Pahrump home interior with large windows" loading="lazy" decoding="async" />
               <figcaption>Desert living, indoors and out</figcaption>
             </figure>
           </div>
@@ -431,10 +436,14 @@ function App() {
               </div>
             </div>
 
-            <form className="contact-form" onSubmit={(event) => event.preventDefault()}>
+            <form
+              className="contact-form"
+              aria-label="Contact Marci Metzger"
+              onSubmit={(event) => event.preventDefault()}
+            >
               <div className="form-row">
-                <label><span>Name</span><input type="text" placeholder="Your name" /></label>
-                <label><span>Email</span><input type="email" placeholder="you@email.com" /></label>
+                <label><span>Name</span><input type="text" name="name" autoComplete="name" placeholder="Your name" /></label>
+                <label><span>Email</span><input type="email" name="email" autoComplete="email" placeholder="you@email.com" /></label>
               </div>
               <label>
                 <span>I'm interested in...</span>
