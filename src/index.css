@@ -1157,3 +1157,157 @@ footer > p {
     height: 44px;
   }
 }
+
+
+/* Motion polish */
+.topbar {
+  position: fixed;
+  transition:
+    padding 260ms ease,
+    background 260ms ease,
+    color 260ms ease,
+    border-color 260ms ease,
+    box-shadow 260ms ease,
+    backdrop-filter 260ms ease;
+}
+
+.topbar-scrolled {
+  padding-top: .8rem;
+  padding-bottom: .8rem;
+  background: rgba(244, 240, 233, .9);
+  color: var(--ink);
+  border-bottom-color: rgba(28, 28, 26, .1);
+  box-shadow: 0 8px 28px rgba(28, 28, 26, .08);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.topbar-scrolled .brand-avatar {
+  border-color: rgba(28, 28, 26, .14);
+  box-shadow: 0 0 0 3px rgba(28, 28, 26, .04);
+}
+
+.topbar-scrolled .nav-cta {
+  color: var(--ink);
+}
+
+.hero-intro > * {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: hero-enter 720ms cubic-bezier(.22,.61,.36,1) forwards;
+}
+
+.hero-intro > .eyebrow { animation-delay: 120ms; }
+.hero-intro > h1 { animation-delay: 220ms; }
+.hero-intro > .hero-copy { animation-delay: 340ms; }
+.hero-intro > .hero-actions { animation-delay: 460ms; }
+
+@keyframes hero-enter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal-section {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 720ms cubic-bezier(.22,.61,.36,1),
+    transform 720ms cubic-bezier(.22,.61,.36,1);
+}
+
+.reveal-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.motion-card {
+  transition:
+    transform 260ms ease,
+    box-shadow 260ms ease;
+}
+
+.motion-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(28, 28, 26, .1);
+}
+
+.listing-image,
+.seller-image,
+.about-image {
+  transition: transform 420ms ease, filter 420ms ease;
+}
+
+.listing-card:hover .listing-image {
+  transform: scale(1.018);
+}
+
+.about-images:hover .portrait-image {
+  transform: scale(1.012);
+}
+
+.button svg,
+.nav-cta svg,
+.text-link svg,
+.listing-copy a svg {
+  transition: transform 220ms ease;
+}
+
+.button:hover svg,
+.nav-cta:hover svg,
+.text-link:hover svg,
+.listing-copy a:hover svg {
+  transform: translateX(4px);
+}
+
+.search-button {
+  transition: background 220ms ease, transform 220ms ease;
+}
+
+.search-button:hover {
+  transform: translateY(-2px);
+  background: #303a33;
+}
+
+.service-card .service-icon {
+  transition: transform 260ms ease, background 260ms ease;
+}
+
+.service-card:hover .service-icon {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,.32);
+}
+
+@media (max-width: 760px) {
+  .topbar-scrolled {
+    padding-top: .65rem;
+    padding-bottom: .65rem;
+  }
+
+  .motion-card:hover,
+  .listing-card:hover .listing-image,
+  .about-images:hover .portrait-image {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-intro > *,
+  .reveal-section {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .motion-card,
+  .listing-image,
+  .seller-image,
+  .about-image,
+  .button svg,
+  .nav-cta svg,
+  .text-link svg,
+  .listing-copy a svg {
+    transition: none !important;
+  }
+}
