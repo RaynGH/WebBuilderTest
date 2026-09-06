@@ -29,25 +29,64 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "RealEstateAgent",
-        "name": "Marci Metzger",
-        "telephone": "+1-206-919-6886",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "3190 HW-160, Suite F",
-          "addressLocality": "Pahrump",
-          "addressRegion": "NV",
-          "postalCode": "89048",
-          "addressCountry": "US"
-        },
-        "areaServed": [
-          "Pahrump, Nevada",
-          "Southern Nevada"
-        ],
-        "memberOf": {
-          "@type": "Organization",
-          "name": "The Ridge Realty Group"
-        }
+        "@graph": [
+          {
+            "@type": "RealEstateAgent",
+            "name": "Marci Metzger",
+            "telephone": "+1-206-919-6886",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "3190 HW-160, Suite F",
+              "addressLocality": "Pahrump",
+              "addressRegion": "NV",
+              "postalCode": "89048",
+              "addressCountry": "US"
+            },
+            "areaServed": [
+              "Pahrump, Nevada",
+              "Southern Nevada"
+            ],
+            "memberOf": {
+              "@type": "Organization",
+              "name": "The Ridge Realty Group"
+            },
+            "sameAs": [
+              "https://www.facebook.com/MarciHomes/",
+              "https://www.instagram.com/marcimetzger_theridge/",
+              "https://www.linkedin.com/in/marci-metzger-30642496/",
+              "https://www.yelp.com/biz/xr3yQN_m2SgO0R_7S6p62w"
+            ]
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Do you help buyers relocating to Pahrump?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Marci can help you compare areas, property types, and local considerations so you can make a more informed move to Pahrump."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can you help with homes that include acreage or larger lots?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Pahrump includes a wide range of residential properties, including homes with more land and open space. Marci can help you narrow the search around what matters most to you."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is the best way to start selling my home?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Start with a conversation about your goals, timing, and the property itself. From there, Marci can help you think through pricing, preparation, positioning, and next steps."
+                }
+              }
+            ]
+          }
+        ]
       }
     </script>
 
