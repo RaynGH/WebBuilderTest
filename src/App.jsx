@@ -299,6 +299,34 @@ function App() {
           </div>
         </section>
 
+        <section className="lifestyle-section" aria-labelledby="life-in-pahrump">
+          <div className="lifestyle-heading">
+            <div>
+              <p className="eyebrow">Life in Pahrump</p>
+              <h2 id="life-in-pahrump">A closer look at the community.</h2>
+            </div>
+            <p>
+              Golf-course neighborhoods, recreation, mountain views, and homes built around
+              a little more breathing room — explore the setting Marci knows firsthand.
+            </p>
+          </div>
+
+          <div className="lifestyle-grid">
+            <figure className="lifestyle-card lifestyle-card-wide">
+              <img src="/images/pahrump-golf-neighborhood.webp" alt="Pahrump neighborhood overlooking a golf course and mountains" />
+              <figcaption>Neighborhood living</figcaption>
+            </figure>
+            <figure className="lifestyle-card">
+              <img src="/images/pahrump-courts.webp" alt="Community recreation courts in Pahrump with mountain views" />
+              <figcaption>Community amenities</figcaption>
+            </figure>
+            <figure className="lifestyle-card">
+              <img src="/images/pahrump-home-interior.webp" alt="Bright Pahrump home interior with large windows" />
+              <figcaption>Desert living, indoors and out</figcaption>
+            </figure>
+          </div>
+        </section>
+
         <section className="pahrump-section">
           <div className="pahrump-content">
             <p className="eyebrow light">Why Pahrump</p>
