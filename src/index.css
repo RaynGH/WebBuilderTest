@@ -1726,3 +1726,134 @@ body.menu-open {
     transition: none !important;
   }
 }
+
+
+/* Tablet refinement: 761px–1050px */
+@media (min-width: 761px) and (max-width: 1050px) {
+  .hero {
+    min-height: 92svh;
+    padding-bottom: 4.75rem;
+  }
+
+  .hero-content {
+    width: min(720px, 88vw);
+  }
+
+  .hero h1 {
+    max-width: 720px;
+    font-size: clamp(4.6rem, 9.2vw, 6.9rem);
+  }
+
+  .split-heading {
+    grid-template-columns: minmax(0, 1.08fr) minmax(260px, .82fr);
+    gap: 2.75rem;
+  }
+
+  .pathways-grid {
+    margin-top: 3rem;
+  }
+
+  .listing-preview {
+    grid-template-columns: minmax(0, 1.12fr) minmax(300px, .88fr);
+    gap: 1rem;
+  }
+
+  .listing-card-large .listing-image,
+  .listing-image {
+    min-height: 410px;
+  }
+
+  .listing-copy h3 {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+  }
+
+  .seller-visual {
+    min-height: 560px;
+  }
+
+  .seller-content {
+    padding: 5rem 7vw;
+  }
+
+  .about-section {
+    gap: 3.5rem;
+    padding-top: 6.5rem;
+    padding-bottom: 6.5rem;
+  }
+
+  .about-images {
+    grid-template-columns: minmax(0, 1.15fr) minmax(220px, .85fr);
+    gap: 1rem;
+    min-height: 0;
+    max-width: 720px;
+    width: 100%;
+    margin-left: auto;
+  }
+
+  .portrait-image {
+    height: 500px;
+    min-height: 500px;
+  }
+
+  .detail-image {
+    height: 68%;
+    min-height: 300px;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .service-card {
+    min-height: 310px;
+    padding: 2rem;
+  }
+
+  .service-card:nth-child(3) {
+    grid-column: 1 / -1;
+    min-height: 250px;
+  }
+
+  .service-card h3 {
+    margin-top: 3rem;
+  }
+
+  .market-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .market-note {
+    min-height: 0;
+    padding: 2rem 2rem 2.25rem;
+  }
+
+  .market-note h3 {
+    margin-top: 1.7rem;
+  }
+
+  .pahrump-section {
+    min-height: 680px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 2rem;
+  }
+
+  .pahrump-content {
+    max-width: 680px;
+  }
+
+  .pahrump-stat {
+    width: min(420px, 100%);
+  }
+
+  .contact-grid {
+    grid-template-columns: minmax(220px, .58fr) minmax(0, 1.42fr);
+    gap: 3.5rem;
+  }
+
+  .contact-section {
+    padding-left: 6vw;
+    padding-right: 6vw;
+  }
+}
