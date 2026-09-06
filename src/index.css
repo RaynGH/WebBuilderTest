@@ -165,15 +165,15 @@ svg { display: block; }
 
 .hero-media {
   background-image: url('/images/pahrump-community.webp');
-  background-position: center;
+  background-position: center 45%;
   background-size: cover;
   transform: scale(1.01);
 }
 
 .hero-overlay {
   background:
-    linear-gradient(180deg, rgba(12,16,13,.28) 0%, rgba(12,16,13,.08) 35%, rgba(12,16,13,.66) 100%),
-    linear-gradient(90deg, rgba(12,16,13,.34), transparent 58%);
+    linear-gradient(180deg, rgba(16,20,18,.18) 0%, rgba(16,20,18,.04) 32%, rgba(16,20,18,.62) 100%),
+    linear-gradient(90deg, rgba(16,20,18,.42), rgba(16,20,18,.08) 62%, transparent 82%);
 }
 
 .hero-content {
