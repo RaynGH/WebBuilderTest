@@ -1311,3 +1311,104 @@ footer > p {
     transition: none !important;
   }
 }
+
+
+/* Final QA: accessibility, anchors, and touch behavior */
+#top,
+#homes,
+#sell,
+#about,
+#services,
+#contact,
+#life-in-pahrump {
+  scroll-margin-top: 96px;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 1000;
+  top: .75rem;
+  left: .75rem;
+  padding: .75rem 1rem;
+  background: var(--dark);
+  color: white;
+  transform: translateY(-180%);
+  transition: transform 180ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #8b6f50;
+  outline-offset: 4px;
+}
+
+.contact-form input:focus-visible,
+.contact-form select:focus-visible,
+.contact-form textarea:focus-visible,
+.search-field select:focus-visible {
+  outline-offset: 3px;
+}
+
+.hero,
+.seller-section,
+.about-section,
+.services-section,
+.lifestyle-section,
+.pahrump-section,
+.contact-section {
+  overflow: clip;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .motion-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(28, 28, 26, .1);
+  }
+
+  .listing-card:hover .listing-image {
+    transform: scale(1.018);
+  }
+
+  .about-images:hover .portrait-image {
+    transform: scale(1.012);
+  }
+
+  .button:hover svg,
+  .nav-cta:hover svg,
+  .text-link:hover svg,
+  .listing-copy a:hover svg {
+    transform: translateX(4px);
+  }
+
+  .service-card:hover .service-icon {
+    transform: translateY(-3px);
+    background: rgba(255,255,255,.32);
+  }
+}
+
+@media (max-width: 760px) {
+  #top,
+  #homes,
+  #sell,
+  #about,
+  #services,
+  #contact,
+  #life-in-pahrump {
+    scroll-margin-top: 78px;
+  }
+
+  .topbar-scrolled .nav-cta {
+    border-color: rgba(28, 28, 26, .22);
+  }
+
+  .topbar-scrolled .brand-copy strong {
+    color: var(--ink);
+  }
+}
