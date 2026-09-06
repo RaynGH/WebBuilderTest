@@ -45,6 +45,33 @@ const CloseIcon = () => (
   </svg>
 )
 
+
+const FacebookIcon = () => (
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M13.5 21v-8h2.8l.4-3h-3.2V8.1c0-.9.3-1.6 1.7-1.6H17V3.8c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V10H7.5v3h2.8v8h3.2Z" />
+  </svg>
+)
+
+const InstagramIcon = () => (
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <rect x="3.5" y="3.5" width="17" height="17" rx="4.5" />
+    <circle cx="12" cy="12" r="4" />
+    <circle cx="17.5" cy="6.8" r=".8" className="social-dot" />
+  </svg>
+)
+
+const LinkedInIcon = () => (
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M6.2 8.4V19M6.2 5.4v.1M10.2 19v-6.1c0-2.5 4-2.7 4 0V19M14.2 12.1c.7-1.5 4.3-1.7 4.3 1.7V19" />
+  </svg>
+)
+
+const YelpIcon = () => (
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="m11.8 2.5.5 6.2M4.7 7.1l5.4 3.1M5.3 16.4l5.2-3.3M15.3 20.7l-1.5-6M20.2 10.8l-5.8.9" />
+  </svg>
+)
+
 const services = [
   {
     icon: <HomeIcon />,
@@ -540,6 +567,56 @@ function App() {
           </div>
         </section>
       </main>
+
+
+      <section className="social-section reveal-section" aria-labelledby="social-heading" data-reveal>
+        <div className="social-copy">
+          <p className="eyebrow light">Stay Connected</p>
+          <h2 id="social-heading">Follow Marci online.</h2>
+          <p>
+            See local updates, real estate insights, and more from Marci across her social channels.
+          </p>
+        </div>
+
+        <div className="social-links" aria-label="Marci Metzger social media">
+          <a
+            href="https://www.facebook.com/MarciHomes/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Marci Metzger on Facebook"
+          >
+            <FacebookIcon />
+            <span>Facebook</span>
+          </a>
+          <a
+            href="https://www.instagram.com/marcimetzger_theridge/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Marci Metzger on Instagram"
+          >
+            <InstagramIcon />
+            <span>Instagram</span>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/marci-metzger-30642496/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Marci Metzger on LinkedIn"
+          >
+            <LinkedInIcon />
+            <span>LinkedIn</span>
+          </a>
+          <a
+            href="https://www.yelp.com/biz/xr3yQN_m2SgO0R_7S6p62w"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Marci Metzger on Yelp"
+          >
+            <YelpIcon />
+            <span>Yelp</span>
+          </a>
+        </div>
+      </section>
 
       <footer>
         <a className="brand footer-brand" href="#top">
