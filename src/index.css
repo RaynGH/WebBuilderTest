@@ -990,3 +990,17 @@ footer > p {
     animation-iteration-count: 1 !important;
   }
 }
+
+
+.brand-mark-image {
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.94);
+  border-color: rgba(255, 255, 255, 0.75);
+}
+
+.brand-mark-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 4px;
+}
