@@ -117,6 +117,22 @@ const pathways = [
   },
 ]
 
+
+const faqs = [
+  {
+    question: 'Do you help buyers relocating to Pahrump?',
+    answer: 'Yes. Marci can help you compare areas, property types, and local considerations so you can make a more informed move to Pahrump.',
+  },
+  {
+    question: 'Can you help with homes that include acreage or larger lots?',
+    answer: 'Yes. Pahrump includes a wide range of residential properties, including homes with more land and open space. Marci can help you narrow the search around what matters most to you.',
+  },
+  {
+    question: 'What is the best way to start selling my home?',
+    answer: 'Start with a conversation about your goals, timing, and the property itself. From there, Marci can help you think through pricing, preparation, positioning, and next steps.',
+  },
+]
+
 const marketNotes = [
   {
     title: 'Homes & Acreage',
@@ -135,6 +151,7 @@ const marketNotes = [
 function App() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('top')
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 48)
@@ -168,6 +185,29 @@ function App() {
     }
 
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+
+  useEffect(() => {
+    const sections = document.querySelectorAll('[data-nav-section]')
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
+
+        if (visible[0]) {
+          setActiveSection(visible[0].target.id)
+        }
+      },
+      {
+        rootMargin: '-22% 0px -58% 0px',
+        threshold: [0.05, 0.2, 0.45, 0.7],
+      },
+    )
+
+    sections.forEach((section) => observer.observe(section))
+    return () => observer.disconnect()
   }, [])
 
   useEffect(() => {
@@ -215,11 +255,11 @@ function App() {
         </a>
 
         <nav className="desktop-nav" aria-label="Primary navigation">
-          <a href="#homes">Buy</a>
-          <a href="#sell">Sell</a>
-          <a href="#about">About</a>
-          <a href="#services">Services</a>
-          <a href="#contact">Contact</a>
+          <a className={activeSection === 'homes' ? 'is-active' : ''} href="#homes">Buy</a>
+          <a className={activeSection === 'sell' ? 'is-active' : ''} href="#sell">Sell</a>
+          <a className={activeSection === 'about' ? 'is-active' : ''} href="#about">About</a>
+          <a className={activeSection === 'services' ? 'is-active' : ''} href="#services">Services</a>
+          <a className={activeSection === 'contact' ? 'is-active' : ''} href="#contact">Contact</a>
         </nav>
 
         <a className="nav-cta" href="tel:+12069196886">
@@ -280,6 +320,12 @@ function App() {
                 Selling your home? <span>See Marci's approach</span>
               </a>
             </div>
+
+            <div className="hero-trust" aria-label="Marci Metzger trust highlights">
+              <span>Nearly 3 decades in real estate</span>
+              <span>Pahrump-based</span>
+              <span>Buyers & sellers</span>
+            </div>
           </div>
 
           <div className="hero-note">
@@ -291,7 +337,7 @@ function App() {
           </div>
         </section>
 
-        <section className="pathways-section reveal-section" id="homes" data-reveal>
+        <section className="pathways-section reveal-section" id="homes" data-nav-section data-reveal>
           <div className="section-heading split-heading">
             <div>
               <p className="eyebrow">Pahrump Real Estate</p>
@@ -349,7 +395,7 @@ function App() {
           </div>
         </section>
 
-        <section className="seller-section reveal-section" id="sell" data-reveal>
+        <section className="seller-section reveal-section" id="sell" data-nav-section data-reveal>
           <div className="seller-visual">
             <div className="seller-image" role="img" aria-label="Pahrump home with backyard pool and mountain views" />
             <div className="experience-card">
@@ -385,7 +431,7 @@ function App() {
           <div><strong>Local</strong><span>Pahrump-based real estate guidance</span></div>
         </section>
 
-        <section className="about-section reveal-section" id="about" data-reveal>
+        <section className="about-section reveal-section" id="about" data-nav-section data-reveal>
           <div className="about-copy">
             <p className="eyebrow">Meet Marci Metzger</p>
             <h2>Experience matters. Local context matters too.</h2>
@@ -411,7 +457,7 @@ function App() {
           </div>
         </section>
 
-        <section className="services-section reveal-section" id="services" data-reveal>
+        <section className="services-section reveal-section" id="services" data-nav-section data-reveal>
           <div className="section-heading centered-heading">
             <p className="eyebrow">How Marci Helps</p>
             <h2>Clear guidance for your next move.</h2>
@@ -507,7 +553,32 @@ function App() {
           </div>
         </section>
 
-        <section className="contact-section reveal-section" id="contact" data-reveal>
+
+        <section className="faq-section reveal-section" aria-labelledby="faq-heading" data-reveal>
+          <div className="faq-intro">
+            <p className="eyebrow">Common Questions</p>
+            <h2 id="faq-heading">A few things people often ask first.</h2>
+            <p>
+              You do not need to have every detail figured out before reaching out.
+              These are good places to start.
+            </p>
+          </div>
+
+          <div className="faq-list">
+            {faqs.map((faq, index) => (
+              <details className="faq-item" key={faq.question}>
+                <summary>
+                  <span>0{index + 1}</span>
+                  <strong>{faq.question}</strong>
+                  <i aria-hidden="true">+</i>
+                </summary>
+                <p>{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section className="contact-section reveal-section" id="contact" data-nav-section data-reveal>
           <div className="contact-heading">
             <p className="eyebrow">Let's Make a Move</p>
             <h2>Ready when you are.</h2>
