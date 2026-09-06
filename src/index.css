@@ -1857,3 +1857,115 @@ body.menu-open {
     padding-right: 6vw;
   }
 }
+
+
+/* Social links */
+.social-section {
+  display: grid;
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  align-items: end;
+  gap: clamp(3rem, 8vw, 8rem);
+  padding: clamp(4.5rem, 8vw, 7rem) clamp(1.25rem, 7vw, 7rem);
+  background: #161a17;
+  color: white;
+}
+
+.social-copy {
+  max-width: 620px;
+}
+
+.social-copy h2 {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 4.8vw, 5rem);
+  font-weight: 500;
+  line-height: .98;
+  letter-spacing: -.035em;
+}
+
+.social-copy > p:last-child {
+  max-width: 520px;
+  margin: 1.25rem 0 0;
+  color: rgba(255,255,255,.62);
+  line-height: 1.75;
+}
+
+.social-links {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid rgba(255,255,255,.14);
+  border-left: 1px solid rgba(255,255,255,.14);
+}
+
+.social-links a {
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1.4rem;
+  border-right: 1px solid rgba(255,255,255,.14);
+  border-bottom: 1px solid rgba(255,255,255,.14);
+  color: rgba(255,255,255,.92);
+  transition: background 220ms ease, transform 220ms ease;
+}
+
+.social-links svg {
+  width: 28px;
+  height: 28px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.social-links a:first-child svg path {
+  fill: currentColor;
+  stroke: none;
+}
+
+.social-links .social-dot {
+  fill: currentColor;
+  stroke: none;
+}
+
+.social-links span {
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .social-links a:hover {
+    background: rgba(255,255,255,.06);
+    transform: translateY(-3px);
+  }
+}
+
+@media (max-width: 1050px) {
+  .social-section {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .social-links {
+    width: 100%;
+  }
+}
+
+@media (max-width: 760px) {
+  .social-section {
+    padding: 4.5rem 1.25rem;
+  }
+
+  .social-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .social-links a {
+    min-height: 120px;
+  }
+}
