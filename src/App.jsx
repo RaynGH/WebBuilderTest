@@ -64,7 +64,12 @@ function App() {
     <div className="site-shell">
       <header className="topbar">
         <a className="brand" href="#top" aria-label="Marci Metzger home">
-          <span className="brand-mark">MM</span>
+          <span className="brand-mark brand-mark-image">
+            <img
+              src="https://img1.wsimg.com/isteam/ip/067a4d42-19e8-46d9-9bed-578bf62dd44e/blob-6c0c2e0.png/:/rs=h:167,cg:true,m/qt=q:95"
+              alt=""
+            />
+          </span>
           <span className="brand-copy">
             <strong>Marci Metzger</strong>
             <span>The Ridge Realty Group</span>
@@ -371,7 +376,12 @@ function App() {
 
       <footer>
         <a className="brand footer-brand" href="#top">
-          <span className="brand-mark">MM</span>
+          <span className="brand-mark brand-mark-image">
+            <img
+              src="https://img1.wsimg.com/isteam/ip/067a4d42-19e8-46d9-9bed-578bf62dd44e/blob-6c0c2e0.png/:/rs=h:167,cg:true,m/qt=q:95"
+              alt=""
+            />
+          </span>
           <span className="brand-copy"><strong>Marci Metzger</strong><span>The Ridge Realty Group</span></span>
         </a>
         <p>© 2026 Marci Metzger. All rights reserved.</p>
