@@ -1412,3 +1412,317 @@ textarea:focus-visible {
     color: var(--ink);
   }
 }
+
+
+/* SEO/readability refinement */
+.pathways-section,
+.market-section {
+  padding: clamp(5rem, 10vw, 9rem) clamp(1.25rem, 7vw, 7rem);
+}
+
+.pathways-section {
+  background: #f4f0e9;
+}
+
+.pathways-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 3.5rem;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.pathway-card {
+  min-height: 330px;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, .16);
+}
+
+.pathway-number {
+  color: #958c80;
+  font-size: .66rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+}
+
+.pathway-card h3,
+.market-note h3 {
+  margin: 3.5rem 0 1rem;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.9rem, 2.7vw, 2.7rem);
+  font-weight: 500;
+  line-height: 1.05;
+}
+
+.pathway-card p,
+.market-note p,
+.market-heading > p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.pathway-card > a {
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+  width: max-content;
+  margin-top: auto;
+  padding-top: 2rem;
+  font-size: .8rem;
+  font-weight: 600;
+  border-bottom: 1px solid currentColor;
+}
+
+.pathway-card > a svg {
+  width: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  transition: transform 220ms ease;
+}
+
+.market-section {
+  background: #232a25;
+  color: white;
+}
+
+.market-heading {
+  max-width: 850px;
+}
+
+.market-heading h2 {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 5.2vw, 5.5rem);
+  font-weight: 500;
+  line-height: .98;
+  letter-spacing: -.035em;
+}
+
+.market-heading > p {
+  max-width: 620px;
+  margin-top: 1.5rem;
+  color: rgba(255, 255, 255, .68);
+}
+
+.market-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 4rem;
+  background: rgba(255, 255, 255, .12);
+}
+
+.market-note {
+  min-height: 280px;
+  padding: 2rem;
+  background: #232a25;
+}
+
+.market-note > span {
+  color: #c8aa82;
+  font-size: .66rem;
+  letter-spacing: .12em;
+}
+
+.market-note h3 {
+  margin-top: 3rem;
+  color: white;
+}
+
+.market-note p {
+  color: rgba(255, 255, 255, .66);
+}
+
+.form-note {
+  margin: -.25rem 0 0;
+  color: var(--muted);
+  font-size: .78rem;
+  line-height: 1.5;
+}
+
+.mobile-menu-button {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255,255,255,.34);
+  border-radius: 50%;
+  background: transparent;
+  color: currentColor;
+  cursor: pointer;
+}
+
+.mobile-menu-button svg {
+  width: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 1.6;
+}
+
+.mobile-menu {
+  position: fixed;
+  z-index: 9;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  padding: 7rem 1.25rem 2rem;
+  background: #1f2722;
+  color: white;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-12px);
+  transition: opacity 240ms ease, visibility 240ms ease, transform 240ms ease;
+}
+
+.mobile-menu.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.mobile-menu nav {
+  display: grid;
+  max-width: 560px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.mobile-menu nav a {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  align-items: center;
+  padding: 1.05rem 0;
+  border-bottom: 1px solid rgba(255,255,255,.14);
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 8vw, 3.5rem);
+  line-height: 1;
+}
+
+.mobile-menu nav a span {
+  font-family: 'DM Sans', sans-serif;
+  color: rgba(255,255,255,.42);
+  font-size: .62rem;
+  letter-spacing: .12em;
+}
+
+.mobile-menu-call {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  width: min(560px, 100%);
+  margin: 2rem auto 0;
+  padding-top: 1.25rem;
+  color: rgba(255,255,255,.66);
+  font-size: .74rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.mobile-menu-call strong {
+  color: white;
+  font-weight: 600;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+.topbar-menu-open {
+  color: white;
+  background: #1f2722;
+  border-bottom-color: rgba(255,255,255,.12);
+}
+
+.topbar-menu-open .brand-copy strong,
+.topbar-menu-open .nav-cta {
+  color: white;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pathway-card:hover > a svg {
+    transform: translateX(4px);
+  }
+}
+
+@media (max-width: 1050px) {
+  .nav-cta {
+    display: none;
+  }
+
+  .mobile-menu-button {
+    display: inline-flex;
+    justify-self: end;
+  }
+
+  .topbar {
+    grid-template-columns: 1fr auto;
+  }
+}
+
+@media (max-width: 900px) {
+  .pathways-grid,
+  .market-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pathway-card {
+    min-height: 260px;
+  }
+
+  .market-note {
+    min-height: 220px;
+  }
+
+  .pathway-card h3,
+  .market-note h3 {
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .pathways-section,
+  .market-section {
+    padding: 4.5rem 1.25rem;
+  }
+
+  .pathways-grid {
+    margin-top: 2.5rem;
+    border-left: 0;
+  }
+
+  .pathway-card {
+    padding: 1.6rem 0;
+    border-right: 0;
+    background: transparent;
+  }
+
+  .market-grid {
+    margin-top: 2.8rem;
+  }
+
+  .market-note {
+    padding: 1.6rem 0;
+  }
+
+  .mobile-menu {
+    padding-top: 6.5rem;
+  }
+
+  .brand-copy strong {
+    font-size: .86rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu {
+    transition: none !important;
+  }
+}
